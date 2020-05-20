@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.parcial2.Repository.TrackRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView lista;
     private Adapter adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +42,31 @@ public class MainActivity extends AppCompatActivity {
         lista.setLayoutManager(new LinearLayoutManager(this));
         tracks =new ArrayList<Track>();
 
+
+
         if(getIntent() != null){
             Track track = new Track();
             track.name = getIntent().getStringExtra("name");
             track.artist = getIntent().getStringExtra("artist");
             track.duration = getIntent().getStringExtra("duration");
-            tracks.add(track);
+            //tracks.add(track);
+            TrackRepository.add(track);
         }
+
 
 
 
         queue = Volley.newRequestQueue(this);
         GetVolley();
+        concatenar();
         //ShowToast();
         //setAdapter();
+    }
+    private void concatenar(){
+        ArrayList<Track> tracksAux=TrackRepository.getOwnTrack();
+        for(Track e: tracksAux){
+            tracks.add(e);
+        }
     }
 
     private void setAdapter(){
