@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -66,7 +67,7 @@ public class addActivity extends AppCompatActivity {
     }
     private void setParameters(){
         track =new Track();
-        avaible=true;
+        avaible=false;
         nameTV=findViewById(R.id.nameTV);
         artistTV=findViewById(R.id.artistTV);
         durationTV=findViewById(R.id.durationTV);
@@ -88,6 +89,8 @@ public class addActivity extends AppCompatActivity {
     private void validate(){
         if(avaible==true){
             backToMain();
+        }else{
+            Toast.makeText(addActivity.this, "Debe buscar una canción primero",Toast.LENGTH_LONG).show();
         }
     }
     private void backWithoutResponse(){
@@ -131,7 +134,7 @@ public class addActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(addActivity.this, "Error: "+error.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
         this.queue.add(request);
