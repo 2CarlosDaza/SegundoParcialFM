@@ -36,7 +36,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="name" />
+                android:text="@string/nameTextViewText" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -48,7 +48,13 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="duration" />
+                android:text="@string/durationTextViewText" />
+
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonBackText" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,7 +68,7 @@
                 android:id="@+id/buttonSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SEARCH" />
+                android:text="@string/buttonSearchText" />
 
             <TextView
                 android:id="@+id/nameTV"
@@ -86,7 +92,7 @@
                 android:id="@+id/buttonAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ADD"
+                android:text="@string/buttonAddText"
                 />
 
 

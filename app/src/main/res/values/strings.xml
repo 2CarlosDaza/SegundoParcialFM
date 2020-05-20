@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">parcial2</string>
+    <string name="buttonBackText">Back</string>
+    <string name="durationTextViewText">duration</string>
+    <string name="nameTextViewText">name</string>
+    <string name="buttonAddText">ADD</string>
+    <string name="buttonSearchText">SEARCH</string>
+    <string name="openButtonText">SEARCH</string>
 </resources>

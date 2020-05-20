@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lista= findViewById(R.id.listaSong);
@@ -59,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         GetVolley();
         concatenar();
-        //ShowToast();
-        //setAdapter();
+
     }
     private void concatenar(){
         ArrayList<Track> tracksAux=TrackRepository.getOwnTrack();
@@ -104,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                                 //track.artist=artist;
 
                                 tracks.add(track);
-                              //  Toast.makeText(MainActivity.this,name,Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //code in error
+
             }
         });
         this.queue.add(request);

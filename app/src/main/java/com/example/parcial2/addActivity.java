@@ -3,6 +3,7 @@ package com.example.parcial2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,18 +23,21 @@ import org.json.JSONObject;
 
 public class addActivity extends AppCompatActivity {
 
-    TextView nameTV;
-    TextView artistTV;
-    TextView durationTV;
-    EditText editText;
+    private TextView nameTV;
+    private TextView artistTV;
+    private TextView durationTV;
+    private EditText editText;
     private Button buttonSearch;
     private Button buttonAdd;
-    Track track;
-    boolean avaible;
+    private Button buttonBack;
+    private Track track;
+    private boolean avaible;
     private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
@@ -52,7 +56,12 @@ public class addActivity extends AppCompatActivity {
                 addTrack();
             }
         });
-
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backWithoutResponse();
+            }
+        });
 
     }
     private void setParameters(){
@@ -64,9 +73,11 @@ public class addActivity extends AppCompatActivity {
         editText=findViewById(R.id.searchEdit);
         buttonSearch=findViewById(R.id.buttonSearch);
         buttonAdd=findViewById(R.id.buttonAdd);
+        buttonBack=findViewById(R.id.buttonBack);
     }
 
     public void add(View view) {
+//esta la añadí desde un onClick de layout pero me dio miedo eliminarla, tuve que cambiarla porque daba errores
 
     }
 
@@ -78,6 +89,9 @@ public class addActivity extends AppCompatActivity {
         if(avaible==true){
             backToMain();
         }
+    }
+    private void backWithoutResponse(){
+        finish();
     }
 
     private void backToMain(){
@@ -101,7 +115,7 @@ public class addActivity extends AppCompatActivity {
                             JSONObject jsonObject = response.getJSONObject("results");
                             JSONObject jsonObject2 = jsonObject.getJSONObject("trackmatches");
                             JSONArray jsonArray=jsonObject2.getJSONArray("track");
-                            JSONObject JSONItem = jsonArray.optJSONObject(0);
+                            JSONObject JSONItem = jsonArray.getJSONObject(0);
                             track.name =JSONItem.getString("name");
                             track.duration ="0";
                             track.artist =JSONItem.getString("artist");
